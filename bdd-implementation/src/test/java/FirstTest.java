@@ -3,8 +3,12 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class FirstTest {
-    public static void main(String[] args){
+    public static void main(String[] args) throws InterruptedException{
+
+        WebDriverManager.chromedriver().setup();
 
         //connectiong with the webdriver
         System.setProperty("webdriver.chrome.driver", "bdd-implementation/drivers/chromedriver.exe");
@@ -16,9 +20,21 @@ public class FirstTest {
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 
         //navigating to a page
-        driver.get("http://goodle.com");
+        driver.get("https://google.com");        
 
-        //ending browser
+        driver.navigate().to("https://automationstepbystep.com");
+        
+        System.out.println("url: " + driver.getCurrentUrl());
+        System.out.println("title: " + driver.getTitle());
+
+        driver.navigate().back();
+        Thread.sleep(2000);        
+        driver.navigate().forward();
+        Thread.sleep(2000);
+        driver.navigate().refresh();                
+
+        Thread.sleep(2000);
+        
         driver.close();
     }
 }
