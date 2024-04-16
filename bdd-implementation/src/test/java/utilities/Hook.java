@@ -12,6 +12,7 @@ import io.cucumber.java.After;
 public class Hook {
 
     public static WebDriver driver;
+    
     @Before(order = 1)
     public static void setup() {
         WebDriverManager.chromedriver().setup();
@@ -28,6 +29,7 @@ public class Hook {
 
     @After(order = 1)
     public static void teardown() {
-        Hook.driver.close();        
+        Hook.driver.close(); 
+        Hook.driver.quit();               
     }
 }
